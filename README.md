@@ -1,6 +1,8 @@
 # projectLogin
 
-This is backend for authenticatoin system using phone Number.
+This is simple backend for authenticatoin system using phone Number written in Node js using Express and MongoDb.
+
+
 
 This repo is very simple to run 
 
@@ -11,3 +13,29 @@ install the dependencies by running command npm install
 put your credentials in .env file for using twilio api
 
 for running project in development server just type npm run dev 
+
+Node-base-auth-system
+A starter boilerplate for node applications with ES6 support which includes  authenticating a user by his phone Number using twilio apis & JWT.
+
+Getting Started
+Clone the repo using
+git clone https://github.com/MAb540/projectLogin
+
+
+Installation
+Run npm install to install all project dependencies available in package.json file.
+Add your credentials in .env file at root directory
+
+In .env file {
+    PORT =         // Server will listen at this PORT
+    DB_HOST =     // Add your mongodb database connection URL here
+    SALT =       // Add salt  to be used in hashing passwords before saving them to Database.
+    ENC_KEY =   // Add encryption key to be used in encrypting phone Numbers before saving them to Database.
+    TWILIO_SERVICE_ID =    // Add your Twilio client id here process is defined below
+    TWILIO_ACCOUNT_SID =  // Add your Twilio Account id here process is defined below
+    TWILIO_AUTH_TOKEN =  // Add your Twilio Auth token here process is defined below
+   
+  }
+
+Development mode
+Having everything installed run "npm run dev". This command will start your server using nodemon.json as included in the package.json file.
