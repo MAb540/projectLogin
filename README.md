@@ -28,11 +28,11 @@ A starter boilerplate for node applications with ES6 support which includes  aut
 
 
  5. <h2>Twilio App</h2>
-   1. To get TWILIO_SERVICE_ID, TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN you need to go to https://www.twilio.com/, first register yourself then login.
-   2. Go to Verify by clicking  verify icon shown on left side menu, from there go to Learn and Build section.  
-   3. Now Create a servie by putting any Name and click on Create Service, you can also test the service there by sending a code on any mobile number.
-   4. Head over to Services tab you shoud see your servie there along with your TWILIO SERVICE ID.
-   5. Head over to Main Dashboard you will see your  TWILIO ACCOUNT SID and TWILIO AUTH TOKEN there.
+   * To get TWILIO_SERVICE_ID, TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN you need to go to https://www.twilio.com/, first register yourself then login.
+   * Go to Verify by clicking  verify icon shown on left side menu, from there go to Learn and Build section.  
+   * Now Create a servie by putting any Name and click on Create Service, you can also test the service there by sending a code on any mobile number.
+   * Head over to Services tab you shoud see your servie there along with your TWILIO SERVICE ID.
+   * Head over to Main Dashboard you will see your  TWILIO ACCOUNT SID and TWILIO AUTH TOKEN there.
 
 
  6. <h2>Features</h2>
