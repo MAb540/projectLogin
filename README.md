@@ -35,7 +35,7 @@ A starter boilerplate for node applications with ES6 support which includes  aut
 
 
 <h1>Features</h1>
-You can Signup a user using username, Phone Number and Password. Confirm Password is also added for validation.
-You can Login a user using username and password and after that user will receive the verification code on his number, the user will have to put the code to get authenticated. 
-The app ensures the username and phone Number is Unique.
+ * You can Signup a user using username, Phone Number and Password. Confirm Password is also added for validation.
+ * You can Login a user using username and password and after that user will receive the verification code on his number, the user will have to put the code to get   authenticated. 
+* The app ensures the username and phone Number is Unique.
 
