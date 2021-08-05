@@ -3,23 +3,13 @@
 This is simple backend for authenticatoin system using phone Number written in Node js using Express and MongoDb.
 
 
-<h1>Getting Started</h1>
-This repo is very simple to run 
 
-just clone the repo 
-
-install the dependencies by running command npm install
-
-put your credentials in .env file for using twilio api
-
-for running project in development server just type npm run dev 
-
-Node-base-auth-system
+<h1>Node-base-auth-boilerplate</h1>
 A starter boilerplate for node applications with ES6 support which includes  authenticating a user by his phone Number using twilio apis & JWT.
 
-Getting Started
-Clone the repo using
-git clone https://github.com/MAb540/projectLogin
+<h1>Getting Started</h1>
+<h2>Clone the repo using</h2>
+  git clone https://github.com/MAb540/projectLogin
 
 
 Installation
