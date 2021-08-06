@@ -1,25 +1,13 @@
 import express from "express";
 import User from "../models/User.js";
 
-import {
-  encrypt,
-  decrypt,
-  hashPassword,
-  comparePassword,
-} from "../Utils/utils.js";
+import { comparePassword } from "../Utils/utils.js";
 
-import twilio from "twilio";
-
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-
-const client = twilio(accountSid, authToken);
+import { createUser, sendCode, verifyCode } from "../Utils/helpers.js";
 
 const authRouter = express.Router();
 
 authRouter.post("/signup", async (req, res, next) => {
-  console.log(req.body);
-
   const { username, phoneNumber, password } = req.body;
 
   try {
@@ -29,22 +17,12 @@ authRouter.post("/signup", async (req, res, next) => {
         .status(409)
         .json({ error: "User with this username already exists" });
     }
-
     try {
-      let pass = await hashPassword(password);
-      let phone = encrypt(phoneNumber);
+      let newUser = createUser(username, phoneNumber, password);
 
-      let newUser = new User({
-        username,
-        phoneNumber: {
-          iv: phone.iv,
-          numberHashed: phone.content,
-        },
-        password: pass,
-      });
-      await newUser.save();
-
-      res.status(200).json({ message: "Signup Success" });
+      res
+        .status(200)
+        .json({ message: "Signup Success", username: newUser.username });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: "Internal Server Error" });
@@ -56,8 +34,6 @@ authRouter.post("/signup", async (req, res, next) => {
 });
 
 authRouter.post("/login", async (req, res) => {
-  console.log(req.body);
-
   const { username, password } = req.body;
 
   try {
@@ -68,17 +44,8 @@ authRouter.post("/login", async (req, res) => {
       return res.status(409).json({ error: "Invalid Username or Password" });
     }
 
-    let number = parseInt(decrypt(user.phoneNumber));
-    console.log(number);
-
     try {
-      const data = await client.verify
-        .services(process.env.TWILIO_SERVICE_ID)
-        .verifications.create({
-          to: `+${number}`,
-          channel: "sms",
-        });
-
+      const data = await sendCode(user);
       console.log(data);
 
       res.status(200).json({
@@ -106,25 +73,19 @@ authRouter.post("/verify", async (req, res) => {
       return res.status(409).json({ error: "Invalid Username " });
     }
 
-    let number = parseInt(decrypt(user.phoneNumber));
-
     try {
-      const data = await client.verify
-        .services(process.env.TWILIO_SERVICE_ID)
-        .verificationChecks.create({
-          to: `+${number}`,
-          code: `${parseInt(code)}`,
-        });
+      const data = await verifyCode(user, code);
 
-      console.log(data);
       if (data.status === "approved") {
         res
           .status(200)
           .json({ valid: data.valid, message: "You have been verified" });
         return;
+      } else if (data.status === "pending") {
+        res.status(404).json({ error: `try After some time` });
+        return;
       }
     } catch (error) {
-      console.log(error);
       res.status(error.status).json({ error: `${error}` });
     }
   } catch (error) {
