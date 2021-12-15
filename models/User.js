@@ -11,19 +11,6 @@ const UserSchema = new Schema({
         max:64
     },
 
-    phoneNumber:{
-        iv:{
-            type:String,
-            required:true,
-            trim:true
-        },
-        numberHashed:{
-            type:String,
-            required:true,
-            trim:true
-        }
-    },  
-
     password:{
         type:String,
         lowercase:true,
@@ -39,12 +26,3 @@ const UserSchema = new Schema({
 const User = mongoose.model("User",UserSchema);
 
 export default User;
-
-
-    // phoneNumber:{
-    //     type:Number,
-    //     trim:true,
-    //     required:true,
-    //     minlength:5,
-    //     maxlength:17
-    // },  

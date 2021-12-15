@@ -7,7 +7,12 @@ dotenv.config();
 
 import "./db/connectDB.js";
 
-import authRouter from "./routes/api.js";
+import itemsRouter from "./routes/api_items.js";
+import usersRoute from './routes/usersRoute.js';
+import coachesRoute from './routes/coachesRoute.js';
+import allRoutes from './routes/coachesRoute.js';
+import patientRoute from "./routes/patientRoute.js";
+
 
 const app = express();
 
@@ -19,10 +24,25 @@ app.use(express.json());
 
 app.use(cors());
 
-// routes
-app.use("/api", authRouter);
-
 app.use(express.static("build"));
+
+
+// routes
+// app.use(allRoutes);
+app.use("/items-api", itemsRouter);
+app.use('/users',usersRoute);
+app.use('/coaches',coachesRoute);
+app.use('/patient',patientRoute);
+
+
+
+app.get('/',(req, res) => {
+  res.send('working');
+})
+
+
+
+
 
 app.listen(process.env.PORT || 5000, () =>
   console.log("listening on port", 5000)
